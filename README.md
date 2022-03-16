@@ -1,9 +1,9 @@
-# 后端项目接口
+# 后端接口
 
 **express + mysql**
 
-**如何执行**
+## 运行
 
-**1.npm install 安装依赖**
+    1.npm install
 
-**2.npm start 运行项目**
+    2.npm run start
