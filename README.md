@@ -1,11 +1,11 @@
 # IMliuyi
 
-**这是一个学习的项目**
+**这是一个学习的项目
+express + mysql
 
-# express + mysql
+如何执行
 
-## 如何执行
+1.npm install 安装依赖
 
-## 1.npm install 安装依赖
-
-## 2.npm start 运行项目
+2.npm start 运行项目
+**
