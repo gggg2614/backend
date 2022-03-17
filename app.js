@@ -1,6 +1,16 @@
 const express = require('express')
 
+const joi = require('@hapi/joi')
+
 const app = express()
+
+app.use(function (err, req, res, next) {
+    if (err instanceof joi.ValidationError) {
+        return res.cc(err)
+    }
+    res.cc(err)
+})
+
 app.use(function (req, res, next) {
     res.cc = function (err, status = 1) {
         res.send({
@@ -10,6 +20,7 @@ app.use(function (req, res, next) {
     }
     next()
 })
+
 const cors = require('cors')
 app.use(express.urlencoded({ extended: false }))
 

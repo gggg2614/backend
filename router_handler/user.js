@@ -4,9 +4,9 @@ const bcrypt = require('bcryptjs')
 exports.regUser = (req, res) => {
     const userinfo = req.body
     userinfo.password = bcrypt.hashSync(userinfo.password, 10)
-    if (!userinfo.username || !userinfo.password) {
-        return res.send({ status: 1, message: '用户名或密码不合法!' })
-    }
+    // if (!userinfo.username || !userinfo.password) {
+    //     return res.send({ status: 1, message: '用户名或密码不合法!' })
+    // }
 
     const sql = 'insert into ev_users set ?'
     db.query(sql, { username: userinfo.username, password: userinfo.password }, (err, results) => {
