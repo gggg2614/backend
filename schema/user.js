@@ -1,6 +1,7 @@
 const joi = require('@hapi/joi')
 
-const username = joi.string().alphanum().min(1).max(10).required
+const username = joi.
+string().alphanum().min(1).max(10).required()
 
 const password = joi
     .string()
