@@ -1,12 +1,17 @@
 const db = require('../db/index')
+
 const bcrypt = require('bcryptjs')
+
+const jwt = require('jsonwebtoken')
+
+const config = require('../config')
 
 exports.regUser = (req, res) => {
     const userinfo = req.body
     // if (!userinfo.username || !userinfo.password) {
     //     return res.send({ status: 1, message: '用户名或密码不合法!' })
     // }
-    db.query('select *from ev_users where username =?', userinfo.username, (err, results) => {
+    db.query('select * from ev_users where username =?', userinfo.username, (err, results) => {
         if (err) {
             return res.cc(err)
         }
@@ -50,6 +55,13 @@ exports.login = (req, res) => {
         if (!compareResult) {
             return res.cc('密码错误')
         }
-        res.send('ok')
+        const user = { ...results[0], password: '', user_pic: '' }
+
+        const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: config.expiresIn })
+        res.send({
+            status: 0,
+            message: 'loginok',
+            token: 'Bearer' + tokenStr,
+        })
     })
 }
