@@ -21,9 +21,8 @@ exports.regUser = (req, res) => {
         }
 
         userinfo.password = bcrypt.hashSync(userinfo.password, 10)
-
         const sql = 'insert into ev_users set ?'
-        db.query(sql, { username: userinfo.username, password: userinfo.password }, (err, results) => {
+        db.query(sql, { id: Date.now() % 1000000, username: userinfo.username, password: userinfo.password }, (err, results) => {
             if (err) {
                 // return res.send({ status: 1, message: err.message })
                 return res.cc(err)
