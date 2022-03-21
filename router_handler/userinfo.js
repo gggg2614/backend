@@ -16,3 +16,16 @@ exports.getUserInfo = (req, res) => {
         })
     })
 }
+
+exports.updateUserInfo = (req, res) => {
+    const sql = `update ev_users set ? where id=?`
+    db.query(sql, [req.body, req.body.id], (err, results) => {
+        if (err) {
+            return res.cc(err)
+        }
+        if (results.affectedRows !== 1) {
+            return res.cc('修改失败')
+        }
+        res.cc('修改成功', 0)
+    })
+}
