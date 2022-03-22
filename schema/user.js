@@ -12,6 +12,9 @@ const id = joi.number().integer().min(1).required()
 const nickname = joi.string().required()
 const email = joi.string().email().required()
 
+const avatar = joi.string().dataUri().required()
+
+
 //注册和登录的验证规则对象
 exports.reg_login_schema = {
     //对req.body中数据进行验证
@@ -33,5 +36,11 @@ exports.update_password_schema = {
     body: {
         oldPwd: password,
         newPwd: joi.not(joi.ref('oldPwd')).concat(password)
+    }
+}
+
+exports.update_avatar_schema = {
+    body: {
+        avatar,
     }
 }
